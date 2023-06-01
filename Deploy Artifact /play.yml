@@ -1,0 +1,53 @@
+---
+
+- name: Server Setup
+  hosts: svrs
+  become: yes
+  tasks:
+  - name: Install httpd (Ubuntu)
+    yum:
+      name: httpd
+      state: latest
+    when: ansible_distribution == "CentOS"
+
+  - name: Install httpd (Ubuntu)
+    apt:
+      name: apache2
+      state: latest
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Remove default Apache Site
+    ansible.builtin.file:
+      path: /var/www/html/index.html
+      state: absent
+
+  - name: Copy Artifact
+    ansible.builtin.copy:
+      src: index.html
+      dest: /var/www/html
+
+  - debug:
+      msg: "Artifact Deployed"
+
+  - name: Check Apache Status (Ubuntu)
+    service:
+      name: apache2
+      state: restarted
+    when: ansible_distribution == "Ubuntu"
+
+  - name: Check httpd status
+    service: 
+      name: httpd
+      state: restarted
+    when: ansible_distribution == "CentOS"
+
+  - debug:
+      msg: "Apache Server Successfully Enabled"
+
+
+
+
+
+    
+
+   
