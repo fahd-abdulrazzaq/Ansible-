@@ -1,0 +1,5 @@
+[svrs]
+
+(REPLACE WITH UBUNTU HOST NAME) ansible_host=(REPLACE WITH UBUNTU HOST PRIVATE IP) ansible_user=ubuntu  ansible_ssh_private_key_file=(REPLACE WITH KEY NAME)
+(REPLACE WITH CENTOS HOST NAME) ansible_host=(REPLACE WITH CENTOS HOST PRIVATE IP) ansible_user=centos  ansible_ssh_private_key_file=(REPLACE WITH KEY NAME) 
+
